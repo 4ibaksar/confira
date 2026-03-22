@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Материалы конференции</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --accent-color: #007aff; /* Синий в стиле iOS/Telegram */
+            --success-color: #4caf50;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 25px; }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Стиль блока для копирования */
+        .copyable {
+            position: relative;
+            background: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            word-wrap: break-word;
+        }
+
+        .copyable:active {
+            background: #eef6ff;
+        }
+
+        /* Всплывающая подсказка */
+        .tooltip {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .show-tooltip { opacity: 1; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Материалы конференции</h1>
+
+    <div class="section">
+        <div class="section-title">Ссылка на презентацию</div>
+        <div class="copyable" onclick="copyText(this)">
+            https://example.com/presentation
+            <span class="tooltip">Скопировано!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Промокод на скидку</div>
+        <div class="copyable" onclick="copyText(this)">
+            CONF_2026_HERO
+            <span class="tooltip">Скопировано!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Контакты спикера</div>
+        <div class="copyable" onclick="copyText(this)">
+            @speaker_username
+            <span class="tooltip">Скопировано!</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyText(element) {
+        // Получаем текст (исключая текст подсказки)
+        const textToCopy = element.innerText.replace('Скопировано!', '').trim();
+        
+        // Используем современное API для копирования
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const tooltip = element.querySelector('.tooltip');
+            tooltip.classList.add('show-tooltip');
+            
+            // Скрываем подсказку через 1.5 секунды
+            setTimeout(() => {
+                tooltip.classList.remove('show-tooltip');
+            }, 1500);
+        }).catch(err => {
+            console.error('Ошибка при копировании: ', err);
+        });
+    }
+</script>
+
+</body>
+</html>
