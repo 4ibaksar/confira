@@ -11,149 +11,89 @@
             --primary: #007aff;
             --text: #1c1e21;
             --secondary-text: #606770;
+            --success: #28a745;
         }
 
         body {
-            font-family: -apple-system, system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .header {
-            width: 100%;
-            background: white;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            width: 100%; background: white; padding: 15px 0;
+            text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        /* Навигация (вкладки) */
         .tabs {
-            display: flex;
-            gap: 10px;
-            padding: 15px;
-            overflow-x: auto; /* Прокрутка, если вкладок много */
-            width: 100%;
-            max-width: 500px;
-            box-sizing: border-box;
+            display: flex; gap: 10px; padding: 15px;
+            overflow-x: auto; width: 100%; max-width: 500px;
+            box-sizing: border-box; -webkit-overflow-scrolling: touch;
         }
 
         .tab-btn {
-            background: white;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            white-space: nowrap;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
+            background: white; border: 1px solid var(--primary);
+            color: var(--primary); padding: 8px 16px; border-radius: 20px;
+            white-space: nowrap; cursor: pointer; font-weight: 600;
+            outline: none; transition: 0.2s;
         }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-        }
+        .tab-btn.active { background: var(--primary); color: white; }
 
-        /* Контент */
-        .container {
-            width: 100%;
-            max-width: 500px;
-            padding: 10px 15px 50px 15px;
-            box-sizing: border-box;
-        }
+        .container { width: 100%; max-width: 500px; padding: 15px; box-sizing: border-box; }
 
-        .page-content {
-            display: none; /* Скрываем все страницы по умолчанию */
-        }
-
-        .page-content.active {
-            display: block; /* Показываем только активную */
-            animation: fadeIn 0.3s ease;
-        }
+        .page-content { display: none; }
+        .page-content.active { display: block; animation: fadeIn 0.2s ease-in; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .prompt-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: var(--card-bg); border-radius: 12px; padding: 15px;
+            margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .prompt-title {
-            font-size: 0.85rem;
-            color: var(--secondary-text);
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
+        .prompt-title { font-size: 0.8rem; color: var(--secondary-text); margin-bottom: 6px; text-transform: uppercase; }
 
         .copy-box {
-            position: relative;
-            background: #f8f9fa;
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            padding: 12px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
-            cursor: pointer;
-            word-wrap: break-word;
+            position: relative; background: #f8f9fa; border: 1px solid #e1e4e8;
+            border-radius: 8px; padding: 12px; font-family: monospace;
+            font-size: 1rem; cursor: pointer; word-wrap: break-word;
+            user-select: none; /* Предотвращает системное выделение при клике */
         }
 
         .copy-box:active { background: #eef6ff; }
 
         .tooltip {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #28a745;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.3s;
+            position: absolute; top: -35px; left: 50%; transform: translateX(-50%);
+            background: var(--success); color: white; padding: 5px 12px;
+            border-radius: 6px; font-size: 0.8rem; opacity: 0;
+            pointer-events: none; transition: 0.3s; z-index: 10;
         }
 
-        .show-tooltip { opacity: 1; }
+        .show-tooltip { opacity: 1; top: -45px; }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <h1 style="margin:0; font-size: 1.3rem;">Конференция 2026</h1>
+    <h1 style="margin:0; font-size: 1.2rem;">Материалы конференции</h1>
 </div>
 
 <div class="tabs">
-    <button class="tab-btn active" onclick="showPage('text')">Текст</button>
-    <button class="tab-btn" onclick="showPage('image')">Картинки</button>
-    <button class="tab-btn" onclick="showPage('code')">Код</button>
+    <button class="tab-btn active" onclick="showPage(this, 'text')">Тексты</button>
+    <button class="tab-btn" onclick="showPage(this, 'image')">Картинки</button>
+    <button class="tab-btn" onclick="showPage(this, 'code')">Код</button>
 </div>
 
 <div class="container">
     
     <div id="text" class="page-content active">
         <div class="prompt-card">
-            <div class="prompt-title">Саммари статьи</div>
+            <div class="prompt-title">Промпт для саммари</div>
             <div class="copy-box" onclick="copyPrompt(this)">
-                Напиши краткий пересказ этого текста в 5 пунктах...
-                <span class="tooltip">Скопировано!</span>
-            </div>
-        </div>
-        <div class="prompt-card">
-            <div class="prompt-title">Тон письма</div>
-            <div class="copy-box" onclick="copyPrompt(this)">
-                Перепиши это сообщение в официально-деловом стиле...
+                <span class="text-to-copy">Сделай краткий пересказ этого текста в 3 предложениях.</span>
                 <span class="tooltip">Скопировано!</span>
             </div>
         </div>
@@ -161,9 +101,9 @@
 
     <div id="image" class="page-content">
         <div class="prompt-card">
-            <div class="prompt-title">Стиль киберпанк</div>
+            <div class="prompt-title">Стиль Фото</div>
             <div class="copy-box" onclick="copyPrompt(this)">
-                Cyberpunk city, neon lights, rainy street, 8k, unreal engine 5...
+                <span class="text-to-copy">Professional photo, 8k, highly detailed, soft lighting.</span>
                 <span class="tooltip">Скопировано!</span>
             </div>
         </div>
@@ -171,9 +111,9 @@
 
     <div id="code" class="page-content">
         <div class="prompt-card">
-            <div class="prompt-title">Python Script</div>
+            <div class="prompt-title">Запрос кода</div>
             <div class="copy-box" onclick="copyPrompt(this)">
-                Write a python function to scrape titles from a website...
+                <span class="text-to-copy">Напиши функцию на Python для обработки CSV файла.</span>
                 <span class="tooltip">Скопировано!</span>
             </div>
         </div>
@@ -182,18 +122,59 @@
 </div>
 
 <script>
-    // Функция переключения страниц
-    function showPage(pageId) {
-        // Скрываем все страницы
-        document.querySelectorAll('.page-content').forEach(page => {
-            page.classList.remove('active');
-        });
-        // Убираем активный стиль у кнопок
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        
-        // Показываем нужную страницу
+    function showPage(btnElement, pageId) {
+        // 1. Скрываем все страницы
+        const pages = document.getElementsByClassName('page-content');
+        for (let i = 0; i < pages.length; i++) {
+            pages[i].classList.remove('active');
+        }
+
+        // 2. Деактивируем все кнопки
+        const buttons = document.getElementsByClassName('tab-btn');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+
+        // 3. Показываем нужную страницу и кнопку
         document.getElementById(pageId).classList.add('active');
-        // Делаем кнопку активной
-        event.currentTarget.classList.add
+        btnElement.classList.add('active');
+    }
+
+    function copyPrompt(container) {
+        // Находим только текст внутри специального span
+        const textElement = container.querySelector('.text-to-copy');
+        const text = textElement.innerText || textElement.textContent;
+        const tooltip = container.querySelector('.tooltip');
+
+        // Копирование
+        if (navigator.clipboard && window.isSecureContext) {
+            // Современный метод
+            navigator.clipboard.writeText(text).then(() => {
+                showSuccess(tooltip);
+            });
+        } else {
+            // Резервный метод для старых браузеров
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showSuccess(tooltip);
+            } catch (err) {
+                alert('Ошибка копирования');
+            }
+            document.body.removeChild(textArea);
+        }
+    }
+
+    function showSuccess(tooltip) {
+        tooltip.classList.add('show-tooltip');
+        setTimeout(() => {
+            tooltip.classList.remove('show-tooltip');
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
