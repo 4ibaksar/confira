@@ -82,42 +82,105 @@
 </div>
 
 <div class="tabs">
-    <button class="tab-btn active" onclick="showPage(this, 'text')">Тексты</button>
-    <button class="tab-btn" onclick="showPage(this, 'image')">Картинки</button>
-    <button class="tab-btn" onclick="showPage(this, 'code')">Код</button>
+    <button class="tab-btn active" onclick="showPage(this, 'text')">Нежелательное поведение</button>
+    <button class="tab-btn" onclick="showPage(this, 'image')">Социальная история</button>
+    <button class="tab-btn" onclick="showPage(this, 'code')">Визуальное расписание</button>
 </div>
 
 <div class="container">
     
     <div id="text" class="page-content active">
         <div class="prompt-card">
-            <div class="prompt-title">Промпт для саммари</div>
+            <div class="prompt-title">Подробный промт (не кричать)</div>
             <div class="copy-box" onclick="copyPrompt(this)">
-                <span class="text-to-copy">Сделай краткий пересказ этого текста в 3 предложениях.</span>
+                <span class="text-to-copy">Мультяшное изображение мальчика или девочки с открытым ртом, показывающим зубы, тянущегося к другому ребенку или взрослому, чтобы укусить. Рука другого персонажа оттягивает руку маленького агрессора назад. Поведение отчетливо перечеркнуто красным крестом поверх картинки. сделай в мультяшном и милом стиле, с четкой надписью "не кричать"</span>
                 <span class="tooltip">Скопировано!</span>
             </div>
         </div>
-    </div>
 
-    <div id="image" class="page-content">
         <div class="prompt-card">
-            <div class="prompt-title">Стиль Фото</div>
+            <div class="prompt-title">Воспитательная карточка</div>
             <div class="copy-box" onclick="copyPrompt(this)">
-                <span class="text-to-copy">Professional photo, 8k, highly detailed, soft lighting.</span>
+                <span class="text-to-copy">Сделай воспитательную карточку для детей, в милом стиле с надписью "не кусаться"</span>
                 <span class="tooltip">Скопировано!</span>
             </div>
         </div>
-    </div>
+    </div> <div id="image" class="page-content">
+        <div class="prompt-card">
+            <div class="prompt-title">Посещение врача (1)</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Создай картинку, на этой картинке изображен мальчик, стоящий перед зеркалом в ванной. Он с энтузиазмом чистит зубы, а рядом с ним стоит мама, которая объясняет важность визита к зубному врачу. В ванной комнате много ярких предметов — зубные щетки, пасты и игрушки, что создает дружелюбную атмосферу.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+        
+        <div class="prompt-card">
+            <div class="prompt-title">Посещение врача (2)</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Создай картинку в таком же стиле, на этой картинке мальчик и его мама входят в стоматологическую клинику. Внутри яркие стены и красочные плакаты с изображениями зубов и персонажей, которые учат детей заботиться о своих зубах. В углу стоит небольшой игровой уголок с игрушками, что помогает создать уютную обстановку.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
 
-    <div id="code" class="page-content">
         <div class="prompt-card">
-            <div class="prompt-title">Запрос кода</div>
+            <div class="prompt-title">Посещение врача (3)</div>
             <div class="copy-box" onclick="copyPrompt(this)">
-                <span class="text-to-copy">Напиши функцию на Python для обработки CSV файла.</span>
+                <span class="text-to-copy">Создай картинку в таком же стиле, на этой картинке мальчик сидит на стуле в ожидании приема у стоматолога. Он выглядит немного взволнованным, но также любопытным. Врачебный кабинет оформлен в светлых тонах, на стенах висят плакаты о здоровье зубов. Мама разговаривает с врачом, а мальчик внимательно слушает.</span>
                 <span class="tooltip">Скопировано!</span>
             </div>
         </div>
-    </div>
+
+        <div class="prompt-card">
+            <div class="prompt-title">Посещение врача (4)</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Создай картинку в таком же стиле, на этой картинке зубной врач, одетый в белый халат и защитные очки, приветливо улыбается и показывает мальчику инструменты. Мальчик лежит в стоматологическом кресле, открыв рот для осмотра. Врач объясняет, что он делает, чтобы мальчику было спокойнее.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-title">Посещение врача (5)</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Создай картинку в таком же стиле, на этой картинке мальчик улыбается и радостно держит наклейку, которую ему дал стоматолог после осмотра. Врач тоже улыбается и говорит что-то ободряющее. Мама стоит рядом, гордая за сына. Атмосфера на картинке позитивная и радостная, подчеркивающая успешное завершение визита.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+
+
+        </div> <div id="code" class="page-content">
+        <div class="prompt-card">
+            <div class="prompt-title">Завтрак</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Квадратная, закругленная карточка визуального расписания для детского сада в едином стиле. Стиль рисования — яркая, добрая, флэт-иллюстрация с четким контуром. Фон светлый, кремовый. Вверху крупный шрифт: ЗАВТРАК. В центре изображен улыбающийся ребенок, сидящий за маленьким столиком. На столе стоит тарелка с дымящейся кашей, ложка и кружка с молоком. В углу — маленькая иконка восходящего солнца.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-title">Одеться</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Квадратная, закругленная карточка визуального расписания для детского сада в едином стиле. Стиль рисования — яркая, добрая, флэт-иллюстрация с четким контуром. Фон светлый, кремовый. Вверху крупный шрифт: ОДЕТЬСЯ. В центре изображен довольный ребенок, который стоит, уже полностью одетый в уличную одежду: яркую куртку, шапку с помпоном, варежки и сапожки. Он готов к выходу.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-title">Дневной сон</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Квадратная, закругленная карточка визуального расписания для детского сада в едином стиле. Стиль рисования — яркая, добрая, флэт-иллюстрация с четким контуром. Фон светлый, кремовый. Вверху крупный шрифт: ДНЕВНОЙ СОН. В центре изображен ребенок, лежащий в своей маленькой кроватке под уютным одеялом, глаза его закрыты, он сладко спит. В руках у него — любимый маленький плюшевый мишка.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-title">Играть с детьми</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                <span class="text-to-copy">Квадратная, закругленная карточка визуального расписания для детского сада в едином стиле. Стиль рисования — яркая, добрая, флэт-иллюстрация с четким контуром. Фон светлый, кремовый. Вверху крупный шрифт: ИГРАТЬ С ДЕТЬМИ. В центре изображена группа из трех-четырех радостных детей, сидящих на ковре. Они вместе строят высокую башню из разноцветных кубиков и игрушечных машинок, смеются.</span>
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+    </div> </div>
+
 
 </div>
 
