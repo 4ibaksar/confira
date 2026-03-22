@@ -3,81 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Материалы конференции</title>
+    <title>Библиотека промптов</title>
     <style>
         :root {
-            --bg-color: #f4f4f9;
+            --bg-color: #f0f2f5;
             --card-bg: #ffffff;
-            --text-color: #333;
-            --accent-color: #007aff; /* Синий в стиле iOS/Telegram */
-            --success-color: #4caf50;
+            --primary: #007aff;
+            --text: #1c1e21;
+            --secondary-text: #606770;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, system-ui, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        .header {
+            width: 100%;
+            background: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Навигация (вкладки) */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto; /* Прокрутка, если вкладок много */
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Контент */
         .container {
             width: 100%;
             max-width: 500px;
+            padding: 10px 15px 50px 15px;
+            box-sizing: border-box;
         }
 
-        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 25px; }
+        .page-content {
+            display: none; /* Скрываем все страницы по умолчанию */
+        }
 
-        .section {
+        .page-content.active {
+            display: block; /* Показываем только активную */
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .prompt-card {
             background: var(--card-bg);
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .section-title {
-            font-weight: bold;
-            font-size: 0.9rem;
-            color: var(--accent-color);
+        .prompt-title {
+            font-size: 0.85rem;
+            color: var(--secondary-text);
             margin-bottom: 8px;
-            text-transform: uppercase;
+            font-weight: bold;
         }
 
-        /* Стиль блока для копирования */
-        .copyable {
+        .copy-box {
             position: relative;
-            background: #f9f9f9;
-            border: 1px dashed #ccc;
+            background: #f8f9fa;
+            border: 1px solid #e1e4e8;
             border-radius: 8px;
             padding: 12px;
-            font-size: 1.1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: background 0.2s;
             word-wrap: break-word;
         }
 
-        .copyable:active {
-            background: #eef6ff;
-        }
+        .copy-box:active { background: #eef6ff; }
 
-        /* Всплывающая подсказка */
         .tooltip {
             position: absolute;
             top: -30px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--success-color);
+            background: #28a745;
             color: white;
             padding: 4px 10px;
             border-radius: 4px;
             font-size: 0.8rem;
             opacity: 0;
-            transition: opacity 0.3s;
             pointer-events: none;
+            transition: 0.3s;
         }
 
         .show-tooltip { opacity: 1; }
@@ -85,54 +130,70 @@
 </head>
 <body>
 
+<div class="header">
+    <h1 style="margin:0; font-size: 1.3rem;">Конференция 2026</h1>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="showPage('text')">Текст</button>
+    <button class="tab-btn" onclick="showPage('image')">Картинки</button>
+    <button class="tab-btn" onclick="showPage('code')">Код</button>
+</div>
+
 <div class="container">
-    <h1>Материалы конференции</h1>
-
-    <div class="section">
-        <div class="section-title">Промты нежелательное поведение</div>
-        <div class="copyable" onclick="copyText(this)">
-            Ребенок кусается. Изобрази в виде картинки 
-- Мультяшное изображение мальчика или девочки с открытым ртом, показывающим зубы, тянущегося к другому ребенку или взрослому, чтобы укусить. Рука другого персонажа оттягивает руку маленького агрессора назад. Поведение отчетливо перечеркнуто красным крестом поверх картинки. сделай в мультяшном и милом стиле, с четкой надписью "не кричать"
-            <span class="tooltip">Скопировано!</span>
+    
+    <div id="text" class="page-content active">
+        <div class="prompt-card">
+            <div class="prompt-title">Саммари статьи</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                Напиши краткий пересказ этого текста в 5 пунктах...
+                <span class="tooltip">Скопировано!</span>
+            </div>
+        </div>
+        <div class="prompt-card">
+            <div class="prompt-title">Тон письма</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                Перепиши это сообщение в официально-деловом стиле...
+                <span class="tooltip">Скопировано!</span>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-title">Промокод на скидку</div>
-        <div class="copyable" onclick="copyText(this)">
-            CONF_2026_HERO
-            <span class="tooltip">Скопировано!</span>
+    <div id="image" class="page-content">
+        <div class="prompt-card">
+            <div class="prompt-title">Стиль киберпанк</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                Cyberpunk city, neon lights, rainy street, 8k, unreal engine 5...
+                <span class="tooltip">Скопировано!</span>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-title">Контакты спикера</div>
-        <div class="copyable" onclick="copyText(this)">
-            @speaker_username
-            <span class="tooltip">Скопировано!</span>
+    <div id="code" class="page-content">
+        <div class="prompt-card">
+            <div class="prompt-title">Python Script</div>
+            <div class="copy-box" onclick="copyPrompt(this)">
+                Write a python function to scrape titles from a website...
+                <span class="tooltip">Скопировано!</span>
+            </div>
         </div>
     </div>
+
 </div>
 
 <script>
-    function copyText(element) {
-        // Получаем текст (исключая текст подсказки)
-        const textToCopy = element.innerText.replace('Скопировано!', '').trim();
-        
-        // Используем современное API для копирования
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            const tooltip = element.querySelector('.tooltip');
-            tooltip.classList.add('show-tooltip');
-            
-            // Скрываем подсказку через 1.5 секунды
-            setTimeout(() => {
-                tooltip.classList.remove('show-tooltip');
-            }, 1500);
-        }).catch(err => {
-            console.error('Ошибка при копировании: ', err);
+    // Функция переключения страниц
+    function showPage(pageId) {
+        // Скрываем все страницы
+        document.querySelectorAll('.page-content').forEach(page => {
+            page.classList.remove('active');
         });
-    }
-</script>
-
-</body>
-</html>
+        // Убираем активный стиль у кнопок
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Показываем нужную страницу
+        document.getElementById(pageId).classList.add('active');
+        // Делаем кнопку активной
+        event.currentTarget.classList.add
